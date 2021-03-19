@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        Nhập vào 3 số từ bàn phím
+        <input type="text" id="number">
+        <button>Tìm max</button>
+    </div>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        var btn = document.querySelector("button");
+
+        btn.addEventListener("click", function () {
+            var max = 0;
+            // var num = document.getElementById("#number");
+            num = $("#number").val();
+            // console.log(num);
+            num = num.split(" ");
+            console.log(num);
+            num.forEach(element => {
+                element = parseInt(element);
+                if(element>max){
+                    max = element;
+                }
+            });
+            console.log("giá trị lớn nhất của dãy là ",max);
+        })
+    </script>
+</body>
+
+</html>

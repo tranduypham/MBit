@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div{
+            opacity: 0;
+        }
+        .no-hidden{
+            opacity: 1;
+        }
+    </style>
+    <textarea name="num_arr" id="num_arr" cols="30" rows="10"></textarea>
+    <button id="TBC">Tìm TB các số chia hết cho 3</button>
+    <div class="">
+        <div>Vị trí đầu tiên của dãy là 0</div>
+        <label for="x">Nhập số x</label>
+        <input id="x" type="number">
+        <label for="x">Nhập vị trí </label>
+        <input id="pos" type="number">
+        <button id="add">Chèn số x vào vị trí đã nhập</button>
+    </div>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var btn = $("button#TBC");
+            var arr = new Array();
+            btn.on("click", function () {
+                var num = $("textarea").val();
+                num = num.split(" ");
+                var i = 0;
+                num.forEach(element => {
+                    arr[i] = parseInt(element);
+                    i++;
+                });
+                // console.log(num);
+                // console.log(arr);
+                var sum = 0;
+                var count_sum = 0;
+                arr.forEach(element => {
+                    if(element%3==0){
+                        sum+=element;
+                        count_sum +=1;
+                    }
+                });
+                console.log("Trung bình cộng các số chia hết cho 3 là "+((sum/count_sum)==NaN?0:(sum/count_sum)));
+                $("div").addClass("no-hidden");
+            });
+
+            $("button#add").on("click",function(){
+                var x = parseFloat($("#x").val());
+                var position = parseFloat($("#pos").val());
+                // console.log(x,position);
+                var temp = 0;
+                var length = arr.length;
+                // console.log(length);
+                if(position<=length){
+                    for(var i = length-1;i>=position-1;i--){
+                        arr[i+1]=arr[i];
+                    }
+                    arr[(position-1)<0?0:(position-1)] = x;
+                    console.log(arr);
+                }else if(position>(length-1)){
+                    console.log("Vị trí vượt quá độ dài của mảng");
+                }else if(position<0){
+                    console.log("Vị trí không được âm ");
+                }
+                
+            });
+        });
+    </script>
+</body>
+
+</html>
